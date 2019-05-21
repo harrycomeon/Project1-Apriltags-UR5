@@ -3,9 +3,13 @@ To complete positioning base upon UR5 and AprilTags
 
 1,
 Firstly，we should create workroom .
+
 Secondly，install universal_robot package and industrial_core package （this includes industrial_robot_simulator package ）
+
 Thirdly，install ur_modern_driver when your ur5 vesion >= 3.0 
+
 Finally,catkn_make and source.
+
 详细步骤：
 1，首先添加source /opt/ros/kinetic/setup.bash到.bashrc工作目录
 因为You will need to run this command on every new shell you open to have access to the ROS commands,（第一次创建时）
