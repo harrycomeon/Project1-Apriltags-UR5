@@ -6,8 +6,10 @@ To complete positioning base upon UR5 and AprilTags
  		  https://blog.csdn.net/tiancailx/article/details/78622536
 1，首先添加source /opt/ros/kinetic/setup.bash到.bashrc工作目录
 因为You will need to run this command on every new shell you open to have access to the ROS commands,（第一次创建时）
+
 2，echo $ROS_PACKAGE_PATH 
 （当有其它工作目录时，显示当前工作目录）
+
 3，创建工作空间及下载包
 mkdir -p ~/universal_robot/src
 cd ~/universal_robot/src
