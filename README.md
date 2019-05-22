@@ -51,3 +51,7 @@ source /home/comeon-harry/universal_robot/devel/setup.bash
  . /home/comeon-harry/universal_robot/devel/setup.bash  （对应自己的文件名）（.后带空格）
 
      输入echo $ROS_PACKAGE_PATH，发现工作目录添加上
+     
+ 8,程序介绍
+ 
+  atnode_vision作为服务服务器，apriltags2_client作为服务客户端，通过TF（少不了urdf文件的启动）产生了了实际路径规划点，然后传给moveit，进行路径规划，控制实际机械手运动。
