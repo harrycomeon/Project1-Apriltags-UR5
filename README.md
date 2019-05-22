@@ -2,8 +2,10 @@
 To complete positioning base upon UR5 and AprilTags 
 
 增加专属UR5工作空间：
+
 参考网址：https://blog.csdn.net/GJXS2017/article/details/80565196
  		  https://blog.csdn.net/tiancailx/article/details/78622536
+
 1，首先添加source /opt/ros/kinetic/setup.bash到.bashrc工作目录
 因为You will need to run this command on every new shell you open to have access to the ROS commands,（第一次创建时）
 
