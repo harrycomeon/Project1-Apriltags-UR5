@@ -46,6 +46,7 @@ public:
     //  try{
      //      listener_.lookupTransform(req.base_frame, p->detections[0].pose.header.frame_id, ros::Time(0), req_to_cam);
      //  }
+      
         try{
         ros::Time now = ros::Time::now();
         listener_.waitForTransform(req.base_frame, p->transforms[0].header.frame_id, 
@@ -68,7 +69,8 @@ public:
   }
   void number_callback(const tf2_msgs::TFMessage::ConstPtr& msg)
   {
-      last_msg_ = msg;
+      if(msg->transforms[0].header.frame_id=="camera")
+         last_msg_ = msg;
       //ROS_INFO_STREAM(last_msg_->detections[0].pose.pose.pose);
   }
 

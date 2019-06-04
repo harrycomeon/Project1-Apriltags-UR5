@@ -4,12 +4,18 @@
 
 #include <moveit/move_group_interface/move_group_interface.h>
 
+#include <actionlib/client/simple_action_client.h>
+#include <control_msgs/FollowJointTrajectoryAction.h>
+#include <apriltags2_node/PlanCartesianPath.h>
+
+
 class ScanNPlan
 {
 public:
-  ScanNPlan(ros::NodeHandle& nh)
+  ScanNPlan(ros::NodeHandle& nh) : ac_("arm_controller/follow_joint_trajectory", true)//joint_trajectory_action
   {
     vision_client_ = nh.serviceClient<apriltags2_node::LocalizePart>("localize_part");
+    cartesian_client_ = nh.serviceClient<apriltags2_node::PlanCartesianPath>("plan_path");
   }
 
   void start(const std::string& base_frame)
@@ -48,8 +54,26 @@ public:
     // Plan for robot to move to part
     //使用move_group对象的setPoseTarget功能设置所需的笛卡尔目标位置
     move_group.setPoseReferenceFrame(base_frame);
-    move_group.setPoseTarget(move_target);
+    move_group.setPoseTarget(move_target); 
     move_group.move();
+
+
+    // Plan cartesian path
+    apriltags2_node::PlanCartesianPath cartesian_srv;
+    cartesian_srv.request.pose = move_target;
+    if (!cartesian_client_.call(cartesian_srv))
+    {
+      ROS_ERROR("Could not plan for path");
+      return;
+    }
+
+    // Execute descartes-planned path directly (bypassing MoveIt)
+    ROS_INFO("Got cart path, executing");
+    control_msgs::FollowJointTrajectoryGoal goal;
+    goal.trajectory = cartesian_srv.response.trajectory;
+    ac_.sendGoal(goal);
+    ac_.waitForResult();
+    ROS_INFO("Done");
 
   }
   
@@ -58,6 +82,8 @@ private:
   ros::ServiceClient vision_client_;
   geometry_msgs::Pose move_target;
   geometry_msgs::Pose move_target1;
+  ros::ServiceClient cartesian_client_;
+  actionlib::SimpleActionClient<control_msgs::FollowJointTrajectoryAction> ac_;
 };
 
 int main(int argc, char **argv)
@@ -80,8 +106,9 @@ int main(int argc, char **argv)
     ros::Duration(.5).sleep();  // wait for the class to initialize
     app.start(base_frame);
     ros::Duration(.1000).sleep();
+    ros::Duration(.1000).sleep();
     //ros::waitForShutdown();
-    ros::spinOnce();
+    //ros::spinOnce();
     ros::Duration(.5).sleep();
   }
   return 0;

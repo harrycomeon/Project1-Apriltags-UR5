@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>apriltags2_node</name>
+  <name>myrobot2_gazebo</name>
   <version>0.0.0</version>
-  <description>The apriltags2_node package</description>
+  <description>The myrobot2_gazebo package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
-  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="comeon-harry@todo.todo">comeon-harry</maintainer>
+  <maintainer email="jane.doe@example.com">Jane Doe</maintainer>
+
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/apriltags2_node</url> -->
+  <!-- <url type="website">http://wiki.ros.org/myrobot2_gazebo</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
@@ -49,27 +49,6 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>apriltags2_ros</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>message_generation</build_depend>
-  <build_depend>tf</build_depend>
-
-  <build_export_depend>apriltags2_ros</build_export_depend>
-  <build_export_depend>roscpp</build_export_depend>
-
-
-  <exec_depend>apriltags2_ros</exec_depend>
-  <exec_depend>roscpp</exec_depend>
-  <exec_depend>message_runtime</exec_depend>
-  <exec_depend>tf</exec_depend>
- 
-  <depend>geometry_msgs</depend>
-  <depend>moveit_ros_planning_interface</depend>
-  <depend>ur5_demo_descartes</depend>
-  <depend>descartes_trajectory</depend>
-  <depend>descartes_planner</depend>
-  <depend>descartes_utilities</depend>
-  <depend>trajectory_msgs</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

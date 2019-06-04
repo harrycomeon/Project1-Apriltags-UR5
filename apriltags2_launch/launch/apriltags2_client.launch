@@ -1,5 +1,5 @@
 <launch>
-	<node name="atnode_vision" pkg="apriltags2_node" type="atnode_vision" output="screen" />
+	<!--node name="atnode_vision" pkg="apriltags2_node" type="atnode_vision" output="screen" /-->
 
 	<node name="apriltags2_client" pkg="apriltags2_node" type="apriltags2_client" output="screen">
         <param name="base_frame" value="world"/>

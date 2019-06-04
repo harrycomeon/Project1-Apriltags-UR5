@@ -1,26 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(apriltags2_node)
+project(myrobot2_usage)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
- add_compile_options(-std=c++11)
+# add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  apriltags2_ros
-  roscpp
-  geometry_msgs
-  message_generation
-  tf
-  moveit_ros_planning_interface
-
-  ur5_demo_descartes
-  descartes_trajectory
-  descartes_planner
-  descartes_utilities
-  trajectory_msgs
-)
+find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -41,10 +28,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   your messages/services/actions (e.g. std_msgs, actionlib_msgs, ...).
 ## * In the file package.xml:
 ##   * add a build_depend tag for "message_generation"
-##   * add a build_depend and a exec_depend tag for each package in MSG_DEP_SET
+##   * add a build_depend and a run_depend tag for each package in MSG_DEP_SET
 ##   * If MSG_DEP_SET isn't empty the following dependency has been pulled in
 ##     but can be declared for certainty nonetheless:
-##     * add a exec_depend tag for "message_runtime"
+##     * add a run_depend tag for "message_runtime"
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
@@ -63,13 +50,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
- add_service_files(
-   FILES
-   LocalizePart.srv
-   PlanCartesianPath.srv
+# add_service_files(
+#   FILES
 #   Service1.srv
 #   Service2.srv
- )
+# )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -79,13 +64,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
- generate_messages(
-   DEPENDENCIES
-   std_msgs
-   geometry_msgs
-   trajectory_msgs
+# generate_messages(
+#   DEPENDENCIES
 #   std_msgs  # Or other packages containing msgs
- )
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -94,7 +76,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## To declare and build dynamic reconfigure parameters within this
 ## package, follow these steps:
 ## * In the file package.xml:
-##   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
+##   * add a build_depend and a run_depend tag for "dynamic_reconfigure"
 ## * In this file (CMakeLists.txt):
 ##   * add "dynamic_reconfigure" to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
@@ -118,12 +100,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES apriltags2_node
- # CATKIN_DEPENDS 
- # apriltags2_ros 
- # roscpp
- # geometry_msgs
- #@ message_runtime
+#  LIBRARIES myrobot2_usage
+#  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
 
@@ -135,24 +113,12 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
-  ${catkin_INCLUDE_DIRS}
+# ${catkin_INCLUDE_DIRS}
 )
-
-add_executable(atnode_vision src/atnode_vision.cpp)
-target_link_libraries(atnode_vision ${catkin_LIBRARIES})
-add_dependencies(atnode_vision ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-add_executable(apriltags2_client src/apriltags2_client.cpp)
-add_dependencies(apriltags2_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(apriltags2_client ${catkin_LIBRARIES})
-
-add_executable(descartes_node src/descartes_node.cpp)
-add_dependencies(descartes_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(descartes_node ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/apriltags2_node.cpp
+#   src/${PROJECT_NAME}/myrobot2_usage.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -163,7 +129,7 @@ target_link_libraries(descartes_node ${catkin_LIBRARIES})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/apriltags2_node_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/myrobot2_usage_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -220,7 +186,7 @@ target_link_libraries(descartes_node ${catkin_LIBRARIES})
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_apriltags2_node.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_myrobot2_usage.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
