@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
   <arg name="launch_prefix" default="" /> <!-- set to value="gdbserver localhost:10000" for remote debugging -->
   <arg name="node_namespace" default="apriltags2_ros_continuous_node" />
@@ -32,6 +33,10 @@
     <param name="publish_tag_detections_image" type="bool" value="true" />      <!-- default: false -->
   </node>
 
-  
-    
+ <node name="atnode_vision" pkg="apriltags2_node" type="atnode_vision" output="screen" >
+    </node>
+
+   <node name="apriltags2_client" pkg="apriltags2_node" type="apriltags2_client" output="screen" >
+    </node>
+
 </launch>
